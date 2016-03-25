@@ -1,9 +1,9 @@
 namespace :parser do
-  desc "TODO"
+  desc "downloads site categories structure"
   task structure: :environment do
   end
 
-  desc "TODO"
+  desc "downloads products"
   task download: :environment do
   end
 end
