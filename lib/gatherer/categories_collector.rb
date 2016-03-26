@@ -4,8 +4,7 @@ module Gatherer
     HOME_PAGE = 'http://www.tvdirect.tv/sale-promotion?___from_store=en&___store=en'.freeze
 
     def initializer
-      mechanize = Mechanize.new
-      @page = mechanize.get(HOME_PAGE)
+      @page = Mechanize.new.get(HOME_PAGE)
     end
 
     def process
