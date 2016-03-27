@@ -8,7 +8,7 @@ module Gatherer
     def process
       @urls.each_with_object({}) do |url, res|
         res[url] = []
-        go_trough_to_pagination(setup_page(url)) do |page|
+        go_through_pagination(setup_page(url)) do |page|
           res[url].concat(page.search('li.item').map { |item| parse_product(item) })
         end
       end
@@ -23,7 +23,7 @@ module Gatherer
       @mechanize.get(url)
     end
 
-    def go_trough_to_pagination(page)
+    def go_through_pagination(page)
       loop do
         yield(page)
         print '.'
@@ -36,7 +36,7 @@ module Gatherer
 
     def parse_product(node)
       {
-        price: node.at('span.price').text[/[\d,.]+/],
+        price: node.at('span.price').text.gsub(/\D/, '').to_f,
         title: node.at('h2.product-name').text.strip,
         sku: node.at('input[name="sku"]')[:value],
         url: node.at('h2.product-name a')[:href]
