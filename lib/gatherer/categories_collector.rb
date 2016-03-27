@@ -9,7 +9,7 @@ module Gatherer
 
     def process
       @page.search('.category li.level0>a').map do |link|
-        { title: link.text, url: link[:href] }
+        {title: link.text, url: link[:href]}
       end
     end
   end

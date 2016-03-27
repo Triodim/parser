@@ -14,6 +14,8 @@ module Gatherer
       end
     end
 
+    private
+
     def setup_page(url)
       page = @mechanize.get(url)
       css = '.toolbar-bottom select[title="Results per page"] option'

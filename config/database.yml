@@ -24,3 +24,7 @@ development:
 production:
   <<: *default
   database: parser_prod
+
+test:
+  <<: *default
+  database: test
