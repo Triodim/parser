@@ -1,6 +1,6 @@
 module Gatherer
   class ProductsCollector
-    def initializer(urls)
+    def initialize(urls)
       @urls = urls
       @mechanize = Mechanize.new
     end

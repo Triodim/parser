@@ -3,7 +3,7 @@ module Gatherer
     #for get english version
     HOME_PAGE = 'http://www.tvdirect.tv/sale-promotion?___from_store=en&___store=en'.freeze
 
-    def initializer
+    def initialize
       @page = Mechanize.new.get(HOME_PAGE)
     end
 
