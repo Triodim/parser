@@ -6,10 +6,10 @@ module Gatherer
     end
 
     def process
-      @urls.each_with_object({}) do |res, url|
+      @urls.each_with_object({}) do |url, res|
         res[url] = []
         go_trough_to_pagination(setup_page(url)) do |page|
-          res[url] << page.search('li.item').map { |item| parse_product(item) }
+          res[url].concat(page.search('li.item').map { |item| parse_product(item) })
         end
       end
     end
@@ -24,10 +24,11 @@ module Gatherer
     def go_trough_to_pagination(page)
       loop do
         yield(page)
-        next_link = page.at('a.next')[:href]
+        print '.'
+        next_link = page.at('a.next')
         break if next_link.nil?
 
-        page = @mechanize.get(next_link)
+        page = @mechanize.get(next_link[:href])
       end
     end
 
